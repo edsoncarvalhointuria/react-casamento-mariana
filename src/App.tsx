@@ -334,6 +334,9 @@ const ListaPresentes = React.memo(({ back }: { back: () => void }) => {
     );
 });
 
+const DATA_CASAMENTO = new Date("2026-10-24T12:00:00");
+const HORARIO = 18;
+
 function App() {
     const [play, setPlay] = useState(false);
     const [showPresentes, setShowPresentes] = useState(false);
@@ -404,9 +407,13 @@ function App() {
                                         CASAMENTO
                                     </motion.p>
                                     <div className="informacoes__dados">
-                                        <data value="17/10/2026">
+                                        <data
+                                            value={DATA_CASAMENTO.toLocaleDateString(
+                                                "pt-BR",
+                                            )}
+                                        >
                                             {Array.from(
-                                                "17.10.2026 | SÁBADO",
+                                                `${DATA_CASAMENTO.toLocaleDateString("pt-BR").replace(/\//g, ".")} | ${DATA_CASAMENTO.toLocaleDateString("pt-BR", { weekday: "long" }).toUpperCase()}`,
                                             ).map((v) =>
                                                 v === " " ? (
                                                     <span>&nbsp;</span>
@@ -420,19 +427,18 @@ function App() {
                                             )}
                                         </data>
                                         <p>
-                                            {Array.from("ÀS 18:00 HORAS").map(
-                                                (v) =>
-                                                    v === " " ? (
-                                                        <span>&nbsp;</span>
-                                                    ) : (
-                                                        <motion.span
-                                                            variants={
-                                                                variantsItem
-                                                            }
-                                                        >
-                                                            {v}
-                                                        </motion.span>
-                                                    ),
+                                            {Array.from(
+                                                `ÀS ${HORARIO}:00 HORAS`,
+                                            ).map((v) =>
+                                                v === " " ? (
+                                                    <span>&nbsp;</span>
+                                                ) : (
+                                                    <motion.span
+                                                        variants={variantsItem}
+                                                    >
+                                                        {v}
+                                                    </motion.span>
+                                                ),
                                             )}
                                         </p>
                                     </div>
@@ -573,7 +579,12 @@ function App() {
                                     >
                                         <i />
                                         <p>
-                                            {Array.from("Sábado").map((v) => (
+                                            {Array.from(
+                                                DATA_CASAMENTO.toLocaleDateString(
+                                                    "pt-BR",
+                                                    { weekday: "long" },
+                                                ),
+                                            ).map((v) => (
                                                 <motion.span
                                                     variants={variantsItem}
                                                 >
@@ -583,9 +594,20 @@ function App() {
                                         </p>
                                         <i />
                                     </motion.div>
-                                    <data value={"17/10/2026"}>
+                                    <data
+                                        value={DATA_CASAMENTO.toLocaleDateString(
+                                            "pt-BR",
+                                        )}
+                                    >
                                         {Array.from(
-                                            "17 de Outubro de 2026",
+                                            DATA_CASAMENTO.toLocaleDateString(
+                                                "pt-BR",
+                                                {
+                                                    day: "2-digit",
+                                                    month: "long",
+                                                    year: "numeric",
+                                                },
+                                            ),
                                         ).map((v) =>
                                             v === " " ? (
                                                 <span>&nbsp;</span>

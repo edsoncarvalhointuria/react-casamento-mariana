@@ -23,18 +23,17 @@
         overflow: hidden;
         &-topo {
             position: absolute;
-            top: 50%;
+            top: -73px;
             left: 50%;
             clip-path: inset(0 0 54% 0);
-            transform: translate(-50%, -29%);
+            transform: translate(-50%, 0%);
 
             width: 99rem;
             @include respond(medium) {
-                transform: translate(-50%, -42%);
+                top: 0.15dvh;
                 width: 60rem;
             }
             @include respond(small) {
-                transform: translate(-50%, -54%);
                 width: 44rem;
             }
         }
@@ -285,17 +284,23 @@
     }
     &__baixo {
         position: fixed;
-        // bottom: 0;
-        // left: 0;
+        bottom: 0;
+        left: 0;
         min-width: 100dvw;
 
         #{$v}__flores {
             rotate: 8deg;
             left: -68px;
-            top: 135px;
+            top: -263px;
+
+            @include respond(medium) {
+                // rotate: 21deg;
+                top: -231px;
+            }
 
             @include respond(small) {
-                top: 169px;
+                rotate: 21deg;
+                top: -150px;
             }
         }
 
@@ -304,37 +309,43 @@
 
             &:nth-child(1 of #{&}) {
                 left: -95px;
-                top: -82px;
+                top: -456px;
                 transform: rotate(239deg);
                 clip-path: inset(0 50% 0 0);
 
                 @include respond(medium) {
-                    left: -213px;
+                    left: -207px;
                 }
                 @include respond(small) {
-                    left: -294px;
-                    transform: rotate(233deg);
+                    left: -152px;
+                    transform: rotate(246deg);
+                    top: -399px;
                 }
             }
             &:nth-child(2 of #{&}) {
                 left: 0px;
                 transform: rotate(0deg) scaleX(-1);
                 clip-path: inset(0 0% 0 70%);
-                top: -30px;
+                top: -396px;
 
+                @include respond(medium) {
+                    top: -356px;
+                }
                 @include respond(small) {
-                    top: 94px;
+                    top: -225px;
                 }
             }
             &:nth-child(3 of #{&}) {
                 left: -8px;
-                top: -48px;
+                top: -395px;
                 transform: rotate(244deg);
                 clip-path: inset(0% 43% 0 17%);
 
+                transform: rotate(252deg);
+
                 @include respond(small) {
-                    left: -49px;
-                    top: 10px;
+                    left: -66px;
+                    top: -303px;
                 }
             }
         }
@@ -377,7 +388,7 @@
 
         @include respond(small) {
             max-width: calc(100vw - 150px);
-            font-size: 1.1rem;
+            font-size: 0.8rem;
             letter-spacing: 0;
         }
     }
@@ -412,8 +423,8 @@
             font-size: 1.6rem;
         }
         @include respond(small) {
-            font-size: 1.4rem;
-            font-weight: 600;
+            font-size: 1.2rem;
+            // font-weight: 600;
         }
     }
 
@@ -427,7 +438,7 @@
         }
 
         data {
-            font-weight: bold;
+            font-weight: 600;
             font-size: 4rem;
 
             @include respond(medium) {
@@ -491,12 +502,13 @@
             @include respond(small) {
                 color: #c3b469;
                 background-color: rgba(250, 244, 230, 0.7);
-                border-radius: 1.5rem;
+                border-radius: 1rem;
 
                 background-color: rgba(122, 26, 46, 0.7);
-                border: 1px solid #7a1a2e;
+                // border: 1px solid #7a1a2e;
                 color: #d9b99b;
                 padding: 1rem;
+                backdrop-filter: blur(4px);
             }
         }
     }
