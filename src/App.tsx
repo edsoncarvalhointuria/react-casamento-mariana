@@ -1,6 +1,8 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import "./App.scss";
 import {
+    ArrowDown,
+    ArrowUp,
     Check,
     Gift,
     House,
@@ -334,177 +336,225 @@ const ListaPresentes = React.memo(({ back }: { back: () => void }) => {
     );
 });
 
+const scrollInto = (id: string) => {
+    const ele = document.getElementById(id);
+    if (ele)
+        ele.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+};
+
+const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
+    const [play, setPlay] = useState(false);
+    const [showArrow, setShowArrow] = useState(true);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    useEffect(() => {
+        if (videoRef.current) {
+            setPlay(true);
+            videoRef.current.play();
+        }
+    }, []);
+    return (
+        <>
+            <div className={`video ${play ? "video--on" : ""}`}>
+                <video
+                    ref={videoRef}
+                    src="/video.mp4"
+                    onEnded={() => {
+                        if (videoRef.current?.currentTime)
+                            videoRef.current.currentTime = 0;
+                        setPlay(false);
+                    }}
+                />
+            </div>
+            <FloresBackground posicao="cima" />
+            <FloresBackground posicao="baixo" />
+
+            <motion.div className="inicio">
+                <div className="inicio__seta">
+                    {showArrow ? (
+                        <button
+                            onClick={() => {
+                                scrollInto("citacao");
+                            }}
+                        >
+                            <ArrowDown size={25} />
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => {
+                                scrollInto("inicio");
+                            }}
+                        >
+                            <ArrowUp size={25} />
+                        </button>
+                    )}
+                </div>
+                <div className="inicio__container" id="inicio">
+                    <motion.div
+                        className="conteudo"
+                        variants={variantsContainer}
+                        initial="initial"
+                        animate="animate"
+                        onViewportLeave={() => setShowArrow(false)}
+                    >
+                        <motion.div className="logo" variants={variantsItem}>
+                            <img src="/logo.png" alt="João e Mariana" />
+                        </motion.div>
+
+                        <div className="informacoes">
+                            <motion.p
+                                className="informacoes__convite"
+                                variants={variantsItem}
+                            >
+                                CONVIDAM PARA A CELEBRAÇÃO DE SEU CASAMENTO
+                            </motion.p>
+                            <div className="informacoes__dados">
+                                <data
+                                    value={DATA_CASAMENTO.toLocaleDateString(
+                                        "pt-BR",
+                                    )}
+                                >
+                                    {Array.from(
+                                        `${DATA_CASAMENTO.toLocaleDateString("pt-BR").replace(/\//g, ".")} | ${DATA_CASAMENTO.toLocaleDateString("pt-BR", { weekday: "long" }).toUpperCase()}`,
+                                    ).map((v, i) =>
+                                        v === " " ? (
+                                            <span key={i}>&nbsp;</span>
+                                        ) : (
+                                            <motion.span
+                                                key={v + i}
+                                                variants={variantsItem}
+                                            >
+                                                {v}
+                                            </motion.span>
+                                        ),
+                                    )}
+                                </data>
+                                <p>
+                                    {Array.from(`ÀS ${HORARIO}:00 HORAS`).map(
+                                        (v, i) =>
+                                            v === " " ? (
+                                                <span key={i}>&nbsp;</span>
+                                            ) : (
+                                                <motion.span
+                                                    key={v + i}
+                                                    variants={variantsItem}
+                                                >
+                                                    {v}
+                                                </motion.span>
+                                            ),
+                                    )}
+                                </p>
+                            </div>
+
+                            <button
+                                title="Clique para ver o vídeo"
+                                type="button"
+                                onClick={() => {
+                                    setPlay((v) => {
+                                        if (!v) videoRef.current?.play();
+                                        else videoRef.current?.pause();
+
+                                        return !v;
+                                    });
+                                }}
+                            >
+                                {play ? (
+                                    <VideoOff size={20} />
+                                ) : (
+                                    <Video size={20} />
+                                )}
+                            </button>
+                        </div>
+
+                        <div className="links">
+                            <a
+                                className="link"
+                                href="https://wa.me/5511912748943?text=Confirmo%20a%20minha%20presen%C3%A7a%20no%20casamento%20de%20Mariana%20e%20Jo%C3%A3o%20!%20"
+                            >
+                                <i>
+                                    <Check size={30} />
+                                </i>
+
+                                <p>
+                                    Confirmar a<br /> presença
+                                </p>
+                            </a>
+                            <a
+                                className="link"
+                                href="https://maps.app.goo.gl/MqFZ8GpSp3JEmuZL7"
+                            >
+                                <i>
+                                    <MapPin size={30} />
+                                </i>
+
+                                <p>como chegar</p>
+                            </a>
+                            <button
+                                className="link"
+                                title="Ver Lista De Presentes"
+                                type="button"
+                                onClick={onShowPresentes}
+                            >
+                                <i>
+                                    <Gift size={30} />
+                                </i>
+
+                                <p>
+                                    Sugestão de
+                                    <br /> Presentes
+                                </p>
+                            </button>
+                        </div>
+                    </motion.div>
+                </div>
+
+                <motion.div
+                    id="citacao"
+                    className="citacao"
+                    variants={variantsItem}
+                    onViewportLeave={() => setShowArrow(true)}
+                    viewport={{
+                        once: false,
+                        margin: "10px",
+                        amount: "all",
+                    }}
+                >
+                    <blockquote>
+                        <span>“</span>Tudo começou no coração de Deus. Cremos
+                        que Ele escreveu nossa história com amor, cuidado e
+                        propósito. Hoje, com gratidão, escolhemos dizer sim
+                        diante do Senhor, certos de que é Ele quem firma nossos
+                        passos e sustenta nossa união. Queremos celebrar esse
+                        momento especial na presença de Deus e ao lado de
+                        pessoas que fazem parte da nossa caminhada. Será uma
+                        alegria compartilhar conosco esse dia tão importante,
+                        onde uniremos nossas vidas para honrar, amar e servir ao
+                        Senhor.
+                        <span>”</span>
+                    </blockquote>
+                </motion.div>
+            </motion.div>
+        </>
+    );
+};
+
 const DATA_CASAMENTO = new Date("2026-10-24T12:00:00");
 const HORARIO = 18;
 
 function App() {
-    const [play, setPlay] = useState(false);
     const [showPresentes, setShowPresentes] = useState(false);
     const [abrir, setAbrir] = useState(false);
-    const videoRef = useRef<HTMLVideoElement>(null);
-
     return (
         <>
             <main>
                 <AnimatePresence mode="wait">
                     {abrir ? (
-                        <Fragment key={"conteudo"}>
-                            <div className={`video ${play ? "video--on" : ""}`}>
-                                <video
-                                    ref={videoRef}
-                                    src="/video.mp4"
-                                    onEnded={() => {
-                                        if (videoRef.current?.currentTime)
-                                            videoRef.current.currentTime = 0;
-                                        setPlay(false);
-                                    }}
-                                />
-                            </div>
-                            <FloresBackground posicao="cima" />
-                            <FloresBackground posicao="baixo" />
-
-                            <motion.div
-                                className="conteudo"
-                                variants={variantsContainer}
-                                initial="initial"
-                                animate="animate"
-                            >
-                                <motion.div
-                                    className="citacao"
-                                    variants={variantsItem}
-                                >
-                                    <blockquote>
-                                        <span>“</span>Tudo começou no coração de
-                                        Deus. Cremos que Ele escreveu nossa
-                                        história com amor, cuidado e propósito.
-                                        Hoje, com gratidão, escolhemos dizer sim
-                                        diante do Senhor, certos de que é Ele
-                                        quem firma nossos passos e sustenta
-                                        nossa união. Queremos celebrar esse
-                                        momento especial na presença de Deus e
-                                        ao lado de pessoas que fazem parte da
-                                        nossa caminhada. Será uma alegria
-                                        compartilhar conosco esse dia tão
-                                        importante, onde uniremos nossas vidas
-                                        para honrar, amar e servir ao Senhor.
-                                        <span>”</span>
-                                    </blockquote>
-                                </motion.div>
-
-                                <motion.div
-                                    className="logo"
-                                    variants={variantsItem}
-                                >
-                                    <img src="/logo.png" alt="João e Mariana" />
-                                </motion.div>
-
-                                <div className="informacoes">
-                                    <motion.p
-                                        className="informacoes__convite"
-                                        variants={variantsItem}
-                                    >
-                                        CONVIDAM PARA A CELEBRAÇÃO DE SEU
-                                        CASAMENTO
-                                    </motion.p>
-                                    <div className="informacoes__dados">
-                                        <data
-                                            value={DATA_CASAMENTO.toLocaleDateString(
-                                                "pt-BR",
-                                            )}
-                                        >
-                                            {Array.from(
-                                                `${DATA_CASAMENTO.toLocaleDateString("pt-BR").replace(/\//g, ".")} | ${DATA_CASAMENTO.toLocaleDateString("pt-BR", { weekday: "long" }).toUpperCase()}`,
-                                            ).map((v) =>
-                                                v === " " ? (
-                                                    <span>&nbsp;</span>
-                                                ) : (
-                                                    <motion.span
-                                                        variants={variantsItem}
-                                                    >
-                                                        {v}
-                                                    </motion.span>
-                                                ),
-                                            )}
-                                        </data>
-                                        <p>
-                                            {Array.from(
-                                                `ÀS ${HORARIO}:00 HORAS`,
-                                            ).map((v) =>
-                                                v === " " ? (
-                                                    <span>&nbsp;</span>
-                                                ) : (
-                                                    <motion.span
-                                                        variants={variantsItem}
-                                                    >
-                                                        {v}
-                                                    </motion.span>
-                                                ),
-                                            )}
-                                        </p>
-                                    </div>
-
-                                    <button
-                                        title="Clique para ver o vídeo"
-                                        type="button"
-                                        onClick={() => {
-                                            setPlay((v) => {
-                                                if (!v)
-                                                    videoRef.current?.play();
-                                                else videoRef.current?.pause();
-
-                                                return !v;
-                                            });
-                                        }}
-                                    >
-                                        {play ? (
-                                            <VideoOff size={20} />
-                                        ) : (
-                                            <Video size={20} />
-                                        )}
-                                    </button>
-                                </div>
-
-                                <div className="links">
-                                    <a
-                                        className="link"
-                                        href="https://wa.me/5511912748943?text=Confirmo%20a%20minha%20presen%C3%A7a%20no%20casamento%20de%20Mariana%20e%20Jo%C3%A3o%20!%20"
-                                    >
-                                        <i>
-                                            <Check size={30} />
-                                        </i>
-
-                                        <p>
-                                            Confirmar a<br /> presença
-                                        </p>
-                                    </a>
-                                    <a
-                                        className="link"
-                                        href="https://maps.app.goo.gl/MqFZ8GpSp3JEmuZL7"
-                                    >
-                                        <i>
-                                            <MapPin size={30} />
-                                        </i>
-
-                                        <p>como chegar</p>
-                                    </a>
-                                    <button
-                                        className="link"
-                                        title="Ver Lista De Presentes"
-                                        type="button"
-                                        onClick={() => setShowPresentes(true)}
-                                    >
-                                        <i>
-                                            <Gift size={30} />
-                                        </i>
-
-                                        <p>
-                                            Sugestão de
-                                            <br /> Presentes
-                                        </p>
-                                    </button>
-                                </div>
-                            </motion.div>
-                        </Fragment>
+                        <Conteudo
+                            key={"conteudo"}
+                            onShowPresentes={() => setShowPresentes(true)}
+                        />
                     ) : (
                         <motion.div
                             key={"home"}
@@ -535,12 +585,13 @@ function App() {
                                 >
                                     <p className="home__envelope--title">
                                         {Array.from("Nosso Casamento").map(
-                                            (v) =>
+                                            (v, i) =>
                                                 v === " " ? (
-                                                    <span>&nbsp;</span>
+                                                    <span key={i}>&nbsp;</span>
                                                 ) : (
                                                     <motion.span
                                                         variants={variantsItem}
+                                                        key={v + i}
                                                     >
                                                         {v}
                                                     </motion.span>
@@ -584,9 +635,10 @@ function App() {
                                                     "pt-BR",
                                                     { weekday: "long" },
                                                 ),
-                                            ).map((v) => (
+                                            ).map((v, i) => (
                                                 <motion.span
                                                     variants={variantsItem}
+                                                    key={v + i}
                                                 >
                                                     {v}
                                                 </motion.span>
@@ -608,12 +660,13 @@ function App() {
                                                     year: "numeric",
                                                 },
                                             ),
-                                        ).map((v) =>
+                                        ).map((v, i) =>
                                             v === " " ? (
-                                                <span>&nbsp;</span>
+                                                <span key={i}>&nbsp;</span>
                                             ) : (
                                                 <motion.span
                                                     variants={variantsItem}
+                                                    key={v + i}
                                                 >
                                                     {v}
                                                 </motion.span>
