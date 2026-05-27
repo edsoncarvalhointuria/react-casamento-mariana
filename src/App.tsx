@@ -345,8 +345,53 @@ const scrollInto = (id: string) => {
         });
 };
 
+const id = "clique-link";
+const CoachMark = React.memo(() => {
+    const [jaViu, setJaViu] = useState(
+        JSON.parse(localStorage.getItem("jaViuCoach") || "false"),
+    );
+
+    const [style, setStyle] = useState({});
+    const $balaoRef = useRef<HTMLParagraphElement>(null);
+
+    useEffect(() => {
+        if (!jaViu) {
+            // localStorage.setItem("jaViuCoach", "true");
+
+            const itemRef = document.getElementById(id);
+            if (!itemRef || !$balaoRef.current) return;
+            itemRef.scrollIntoView({ behavior: "instant", block: "center" });
+            const { height, left, top, width } =
+                itemRef.getBoundingClientRect();
+            setStyle({ height, width, left, top });
+
+            const margem = 30;
+            $balaoRef.current.style.top = `${margem + top + $balaoRef.current.clientHeight}px`;
+            $balaoRef.current.style.left = `${left + width / 2 - $balaoRef.current.clientWidth / 2}px`;
+        }
+    }, []);
+
+    return (
+        <AnimatePresence>
+            {!jaViu && (
+                <motion.div
+                    className="coach"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => setJaViu(true)}
+                >
+                    <div className="coach__destaque" style={style}></div>
+                    <p ref={$balaoRef}>Clique nos ícones acessar</p>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+});
 const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
     const [play, setPlay] = useState(false);
+    const [showCoach, setShowCoach] = useState(false);
     const [showArrow, setShowArrow] = useState(true);
     const videoRef = useRef<HTMLVideoElement>(null);
     useEffect(() => {
@@ -357,6 +402,7 @@ const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
     }, []);
     return (
         <>
+            {showCoach && <CoachMark />}
             <div className={`video ${play ? "video--on" : ""}`}>
                 <video
                     ref={videoRef}
@@ -365,6 +411,7 @@ const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
                         if (videoRef.current?.currentTime)
                             videoRef.current.currentTime = 0;
                         setPlay(false);
+                        setShowCoach(true);
                     }}
                 />
             </div>
@@ -470,6 +517,7 @@ const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
 
                         <div className="links">
                             <a
+                                id={id}
                                 className="link"
                                 href="https://wa.me/5511912748943?text=Confirmo%20a%20minha%20presen%C3%A7a%20no%20casamento%20de%20Mariana%20e%20Jo%C3%A3o%20!%20"
                             >
@@ -610,9 +658,19 @@ function App() {
                                             alt="Envelope"
                                         />
 
-                                        <p className="home__img--clique">
+                                        <motion.p
+                                            className="home__img--clique"
+                                            initial={{ scale: 1 }}
+                                            animate={{ scale: 1.2 }}
+                                            transition={{
+                                                duration: 0.8,
+                                                repeat: Infinity,
+                                                repeatType: "reverse",
+                                                ease: "easeInOut",
+                                            }}
+                                        >
                                             Clique para abrir
-                                        </p>
+                                        </motion.p>
                                     </div>
                                 </motion.div>
 

@@ -805,6 +805,44 @@
     }
 }
 
+.coach {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+
+    &__destaque {
+        position: fixed;
+        border-radius: 0.8rem;
+        box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.8);
+        transition: all 0.3s ease;
+    }
+
+    p {
+        position: fixed;
+        z-index: 3001;
+        background: #1e293b;
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 1.2rem;
+        max-width: 20rem;
+        width: max-content;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+        text-align: center;
+        &::before {
+            content: "";
+            position: absolute;
+            width: 1.6rem;
+            height: 1.6rem;
+            background: #1e293b;
+            transform: translateX(-50%) rotate(45deg);
+            left: 50%;
+            border-radius: 0.2rem;
+            top: -0.6rem;
+        }
+    }
+}
+
 @keyframes balancoDoVento {
     0%,
     100% {
