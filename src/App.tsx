@@ -356,7 +356,7 @@ const CoachMark = React.memo(() => {
 
     useEffect(() => {
         if (!jaViu) {
-            // localStorage.setItem("jaViuCoach", "true");
+            localStorage.setItem("jaViuCoach", "true");
 
             const itemRef = document.getElementById(id);
             if (!itemRef || !$balaoRef.current) return;
