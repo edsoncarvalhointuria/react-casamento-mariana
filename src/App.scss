@@ -70,6 +70,7 @@
     }
     &__img {
         position: relative;
+        cursor: pointer;
 
         &--letters {
             position: absolute;
@@ -617,17 +618,19 @@
         max-height: 100dvh;
         overflow-x: hidden;
         overflow-y: auto;
-        scroll-behavior: smooth;
+        // scroll-behavior: smooth;
 
         scroll-snap-type: y mandatory;
 
         & > div {
             height: 100dvh;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
+            @media all and (max-width: 1021px) {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
 
-            &:last-child {
-                scroll-snap-align: end;
+                &:last-child {
+                    scroll-snap-align: end;
+                }
             }
         }
     }

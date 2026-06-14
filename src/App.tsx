@@ -15,6 +15,9 @@ import {
 import { AnimatePresence, motion, stagger, type Variants } from "framer-motion";
 import Cozinha from "./assets/Cozinha";
 
+const DATA_CASAMENTO = new Date("2026-10-24T12:00:00");
+const HORARIO = 16;
+
 const variantsContainer: Variants = {
     initial: {},
     animate: { transition: { delayChildren: stagger(0.05) } },
@@ -36,35 +39,64 @@ interface SecaoInterface {
 }
 
 const itensCozinha = [
-    { img: "/itens/item1.png", link: "https://a.co/d/0GJhQWr" },
+    // { img: "/itens/item1.png", link: "https://a.co/d/0GJhQWr" },
     { img: "/itens/item2.png", link: "https://a.co/d/8aVnetd" },
-    { img: "/itens/item3.png", link: "https://a.co/d/5Ng2kx0" },
-    { img: "/itens/item4.png", link: "https://a.co/d/24GhebR" },
-    { img: "/itens/item5.png", link: "https://a.co/d/azlXxV5" },
-    { img: "/itens/item6.png", link: "https://a.co/d/cVe8MBu" },
+    {
+        img: "/itens/microondas-removebg-preview.png",
+        link: "https://a.co/d/0crvrO70",
+    },
+    {
+        img: "/itens/Airfryer-removebg-preview.png",
+        link: "https://a.co/d/07H8FY5r",
+    },
+    {
+        img: "/itens/Batedeira-removebg-preview.png",
+        link: "https://a.co/d/00rwaLzK",
+    },
+    {
+        img: "/itens/Jogodejantar-removebg-preview.png",
+        link: "https://a.co/d/0egmDy9F",
+    },
+    {
+        img: "/itens/Faqueiro-removebg-preview.png",
+        link: "https://a.co/d/01r9Oqbd",
+    },
+    {
+        img: "/itens/Liquidificador-removebg-preview.png",
+        link: "https://a.co/d/00lSEww7",
+    },
+    {
+        img: "/itens/Marinequesdevidro-removebg-preview.png",
+        link: "https://a.co/d/081Hlq3n",
+    },
+
+    // { img: "/itens/item3.png", link: "https://a.co/d/5Ng2kx0" },
+    // { img: "/itens/item4.png", link: "https://a.co/d/24GhebR" },
+    // { img: "/itens/item5.png", link: "https://a.co/d/azlXxV5" },
+    // { img: "/itens/item6.png", link: "https://a.co/d/cVe8MBu" },
     { img: "/itens/item7.png", link: "https://a.co/d/hxNwkRk" },
     { img: "/itens/item8.png", link: "https://a.co/d/2xgxGbw" },
     { img: "/itens/item9.png", link: "https://a.co/d/b4vTyDv" },
 
     { img: "/itens/item10.png", link: "https://a.co/d/6v5uczJ" },
-    { img: "/itens/item11.png", link: "https://a.co/d/4FKU9Oz" },
-    { img: "/itens/item12.png", link: "https://a.co/d/1s4D0PE" },
-    { img: "/itens/item13.png", link: "https://a.co/d/cKcgvop" },
-    { img: "/itens/item14.png", link: "https://a.co/d/aut1i2c" },
-    { img: "/itens/item15.png", link: "https://a.co/d/9VJQET5" },
-    { img: "/itens/item16.png", link: "https://a.co/d/f86dywP" },
-    { img: "/itens/item17.png", link: "https://a.co/d/bfhjoQB" },
-    { img: "/itens/item18.png", link: "https://a.co/d/54ezO4l" },
+    // { img: "/itens/item11.png", link: "https://a.co/d/4FKU9Oz" },
+    // { img: "/itens/item12.png", link: "https://a.co/d/1s4D0PE" },
+    // { img: "/itens/item13.png", link: "https://a.co/d/cKcgvop" },
+    // { img: "/itens/item14.png", link: "https://a.co/d/aut1i2c" },
+    // { img: "/itens/item15.png", link: "https://a.co/d/9VJQET5" },
+    // { img: "/itens/item16.png", link: "https://a.co/d/f86dywP" },
+    // { img: "/itens/item17.png", link: "https://a.co/d/bfhjoQB" },
+    // { img: "/itens/item18.png", link: "https://a.co/d/54ezO4l" },
 
-    { img: "/itens/item19.png", link: "https://a.co/d/bFrrUKt" },
-    { img: "/itens/item20.png", link: "https://a.co/d/bcM33W0" },
+    // { img: "/itens/item19.png", link: "https://a.co/d/bFrrUKt" },
+    // { img: "/itens/item20.png", link: "https://a.co/d/bcM33W0" },
     { img: "/itens/item21.png", link: "https://a.co/d/4TFqCVS" },
     { img: "/itens/item22.png", link: "https://a.co/d/dfwWixM" },
-    { img: "/itens/item23.png", link: "https://a.co/d/hlLxsPc" },
-    { img: "/itens/item24.png", link: "https://a.co/d/3zMorwk" },
-    { img: "/itens/item25.png", link: "https://a.co/d/esY9CK8" },
+    // { img: "/itens/item23.png", link: "https://a.co/d/hlLxsPc" },
+    // { img: "/itens/item24.png", link: "https://a.co/d/3zMorwk" },
+    // { img: "/itens/item25.png", link: "https://a.co/d/esY9CK8" },
     { img: "/itens/item26.png", link: "https://a.co/d/dwKIP2F" },
-    { img: "/itens/item27.png", link: "https://a.co/d/c3Fse2e" },
+    // { img: "/itens/item27.png", link: "https://a.co/d/c3Fse2e" },
 
     { img: "/itens/item28.png", link: "https://a.co/d/dqFIowv" },
     { img: "/itens/item29.png", link: "https://a.co/d/2homcG5" },
@@ -76,23 +108,23 @@ const itensCozinha = [
     { img: "/itens/item35.png", link: "https://a.co/d/b2Joc1g" },
     { img: "/itens/item36.png", link: "https://a.co/d/9ZJQREp" },
 
-    { img: "/itens/item37.png", link: "https://a.co/d/cVerSez" },
+    // { img: "/itens/item37.png", link: "https://a.co/d/cVerSez" },
     { img: "/itens/item38.png", link: "https://a.co/d/93YZNv2" },
-    { img: "/itens/item39.png", link: "https://a.co/d/3691LLJ" },
-    { img: "/itens/item40.png", link: "https://a.co/d/aveIa8A" },
+    // { img: "/itens/item39.png", link: "https://a.co/d/3691LLJ" },
+    // { img: "/itens/item40.png", link: "https://a.co/d/aveIa8A" },
     { img: "/itens/item41.png", link: "https://a.co/d/8yO2OPi" },
     { img: "/itens/item42.png", link: "https://a.co/d/dsh8BJQ" },
-    { img: "/itens/item43.png", link: "https://a.co/d/6wSMbso" },
+    // { img: "/itens/item43.png", link: "https://a.co/d/6wSMbso" },
     { img: "/itens/item44.png", link: "https://a.co/d/60ZfVh4" },
-    { img: "/itens/item45.png", link: "https://a.co/d/12chQjJ" },
+    // { img: "/itens/item45.png", link: "https://a.co/d/12chQjJ" },
 
-    { img: "/itens/item46.png", link: "https://a.co/d/azE5oeU" },
-    { img: "/itens/item47.png", link: "https://a.co/d/c2HNWgN" },
-    { img: "/itens/item48.png", link: "https://a.co/d/26LrUoA" },
-    { img: "/itens/item49.png", link: "https://a.co/d/8ELEE1P" },
-    { img: "/itens/item50.png", link: "https://a.co/d/avQVJz2" },
-    { img: "/itens/item51.png", link: "https://a.co/d/cls16YN" },
-    { img: "/itens/item52.png", link: "https://a.co/d/4sMOQ6N" },
+    // { img: "/itens/item46.png", link: "https://a.co/d/azE5oeU" },
+    // { img: "/itens/item47.png", link: "https://a.co/d/c2HNWgN" },
+    // { img: "/itens/item48.png", link: "https://a.co/d/26LrUoA" },
+    // { img: "/itens/item49.png", link: "https://a.co/d/8ELEE1P" },
+    // { img: "/itens/item50.png", link: "https://a.co/d/avQVJz2" },
+    // { img: "/itens/item51.png", link: "https://a.co/d/cls16YN" },
+    // { img: "/itens/item52.png", link: "https://a.co/d/4sMOQ6N" },
     { img: "/itens/item53.png", link: "https://a.co/d/4zjZ7be" },
 ];
 const itensSala = [
@@ -109,6 +141,14 @@ const itensBanheiro = [
     { img: "/itens/item62.png", link: "https://a.co/d/6vQncRk" },
     { img: "/itens/item63.png", link: "https://a.co/d/0jlmjEe" },
     { img: "/itens/item64.png", link: "https://a.co/d/4dKnuOy" },
+    {
+        img: "/itens/TolhadeBanho-removebg-preview.png",
+        link: "https://a.co/d/0fNDjlOb",
+    },
+    {
+        img: "/itens/Cesto-removebg-preview.png",
+        link: "https://a.co/d/0bw2x0cj",
+    },
 ];
 const itensQuarto = [
     { img: "/itens/item65.png", link: "https://a.co/d/fWibduC" },
@@ -123,12 +163,16 @@ const itensQuarto = [
 ];
 const itensServico = [
     { img: "/itens/item74.png", link: "https://a.co/d/3ymBguN" },
-    { img: "/itens/item75.png", link: "https://a.co/d/4sWJeyW" },
-    { img: "/itens/item76.png", link: "https://a.co/d/cR3xmYB" },
+    // { img: "/itens/item75.png", link: "https://a.co/d/4sWJeyW" },
+    // { img: "/itens/item76.png", link: "https://a.co/d/cR3xmYB" },
+    // {
+    //     img: "/itens/Ferro-removebg-preview.png",
+    //     link: "https://a.co/d/03oBAoYP",
+    // },
     { img: "/itens/item77.png", link: "https://a.co/d/2mGa0lh" },
     { img: "/itens/item78.png", link: "https://a.co/d/3YXYRLx" },
     { img: "/itens/item79.png", link: "https://a.co/d/cpi4Ium" },
-    { img: "/itens/item80.png", link: "https://a.co/d/fJCGbTj" },
+    // { img: "/itens/item80.png", link: "https://a.co/d/fJCGbTj" },
 ];
 
 const secoes = [
@@ -587,9 +631,6 @@ const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
         </>
     );
 };
-
-const DATA_CASAMENTO = new Date("2026-10-24T12:00:00");
-const HORARIO = 18;
 
 function App() {
     const [showPresentes, setShowPresentes] = useState(false);
