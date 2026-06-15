@@ -228,7 +228,12 @@ const Item = React.memo(
         link: string;
     }) => {
         return (
-            <a href={link} target="_blank" className="lista-presentes__item">
+            <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="lista-presentes__item"
+            >
                 <img src={img} alt={"Produto" + index} loading="lazy" />
             </a>
         );
@@ -561,6 +566,7 @@ const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
 
                         <div className="links">
                             <a
+                                rel="noopener noreferrer"
                                 id={id}
                                 className="link"
                                 href="https://wa.me/5511912748943?text=Confirmo%20a%20minha%20presen%C3%A7a%20no%20casamento%20de%20Mariana%20e%20Jo%C3%A3o%20!%20"
@@ -574,6 +580,7 @@ const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
                                 </p>
                             </a>
                             <a
+                                rel="noopener noreferrer"
                                 className="link"
                                 href="https://maps.app.goo.gl/MqFZ8GpSp3JEmuZL7"
                             >
