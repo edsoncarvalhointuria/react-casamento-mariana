@@ -1,17 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import "./App.scss";
-import {
-    ArrowDown,
-    ArrowUp,
-    Check,
-    Gift,
-    House,
-    MapPin,
-    MoveLeft,
-    Pointer,
-    Video,
-    VideoOff,
-} from "lucide-react";
+import { ArrowDown, ArrowUp, Check, Gift, House, MapPin, MoveLeft, Pointer, Video, VideoOff } from "lucide-react";
 import { AnimatePresence, motion, stagger, type Variants } from "framer-motion";
 import Cozinha from "./assets/Cozinha";
 
@@ -217,43 +206,21 @@ const FloresBackground = ({ posicao }: { posicao: "cima" | "baixo" }) => {
         </div>
     );
 };
-const Item = React.memo(
-    ({
-        img,
-        index,
-        link,
-    }: {
-        img: string;
-        index: string | number;
-        link: string;
-    }) => {
-        return (
-            <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="lista-presentes__item"
-            >
-                <img src={img} alt={"Produto" + index} loading="lazy" />
-            </a>
-        );
-    },
-);
+const Item = React.memo(({ img, index, link }: { img: string; index: string | number; link: string }) => {
+    return (
+        <a href={link} target="_blank" rel="noopener noreferrer" className="lista-presentes__item">
+            <img src={img} alt={"Produto" + index} loading="lazy" />
+        </a>
+    );
+});
 const ListaItens = React.memo(({ lista }: { lista: ItemInterface[] }) => {
     return (
         <div className="lista-presentes__lista">
             <h2>Mariana e João</h2>
 
-            <div
-                className={`lista-presentes__lista-container ${lista.length < 7 ? "duas-colunas" : ""}`}
-            >
+            <div className={`lista-presentes__lista-container ${lista.length < 7 ? "duas-colunas" : ""}`}>
                 {lista.map((value, ind) => (
-                    <Item
-                        img={value.img}
-                        link={value.link}
-                        index={ind}
-                        key={ind}
-                    />
+                    <Item img={value.img} link={value.link} index={ind} key={ind} />
                 ))}
             </div>
 
@@ -266,38 +233,21 @@ const ListaItens = React.memo(({ lista }: { lista: ItemInterface[] }) => {
         </div>
     );
 });
-const GridItens = React.memo(
-    ({ lista }: { lista: { img: string; link: string }[] }) => {
-        return (
-            <>
-                {Array.from({ length: Math.ceil(lista.length / 9) }).map(
-                    (_, i) => (
-                        <ListaItens
-                            lista={lista.slice(i * 9, (i + 1) * 9)}
-                            key={i}
-                        />
-                    ),
-                )}
-            </>
-        );
-    },
-);
-const SecaoTitulo = ({
-    titulo,
-    Img,
-}: {
-    titulo: string;
-    Img: string | React.ComponentType;
-}) => {
+const GridItens = React.memo(({ lista }: { lista: { img: string; link: string }[] }) => {
+    return (
+        <>
+            {Array.from({ length: Math.ceil(lista.length / 9) }).map((_, i) => (
+                <ListaItens lista={lista.slice(i * 9, (i + 1) * 9)} key={i} />
+            ))}
+        </>
+    );
+});
+const SecaoTitulo = ({ titulo, Img }: { titulo: string; Img: string | React.ComponentType }) => {
     return (
         <div className="titulo-presentes" id={titulo.replace(/\s/g, "")}>
             <p>{titulo}</p>
             <div className="titulo-presentes--img">
-                {typeof Img === "string" ? (
-                    <img src={Img} alt="Logo Seção" />
-                ) : (
-                    <Img />
-                )}
+                {typeof Img === "string" ? <img src={Img} alt="Logo Seção" /> : <Img />}
             </div>
         </div>
     );
@@ -313,12 +263,7 @@ const Secoes = React.memo(({ secoes }: { secoes: SecaoInterface[] }) => {
 
 const ListaPresentes = React.memo(({ back }: { back: () => void }) => {
     return (
-        <motion.div
-            className="lista-presentes"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-        >
+        <motion.div className="lista-presentes" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <FloresBackground posicao="cima" />
             <FloresBackground posicao="baixo" />
 
@@ -346,16 +291,12 @@ const ListaPresentes = React.memo(({ back }: { back: () => void }) => {
                     <p>Índice</p>
 
                     <ul>
-                        {[...secoes, { titulo: "Pix dos Noivos" }].map(
-                            (v, i) => (
-                                <li key={v.titulo}>
-                                    <span>{i + 1}</span>
-                                    <a href={`#${v.titulo.replace(/\s/g, "")}`}>
-                                        {v.titulo}
-                                    </a>
-                                </li>
-                            ),
-                        )}
+                        {[...secoes, { titulo: "Pix dos Noivos" }].map((v, i) => (
+                            <li key={v.titulo}>
+                                <span>{i + 1}</span>
+                                <a href={`#${v.titulo.replace(/\s/g, "")}`}>{v.titulo}</a>
+                            </li>
+                        ))}
                     </ul>
                 </div>
 
@@ -396,9 +337,7 @@ const scrollInto = (id: string) => {
 
 const id = "clique-link";
 const CoachMark = React.memo(() => {
-    const [jaViu, setJaViu] = useState(
-        JSON.parse(localStorage.getItem("jaViuCoach") || "false"),
-    );
+    const [jaViu, setJaViu] = useState(JSON.parse(localStorage.getItem("jaViuCoach") || "false"));
 
     const [style, setStyle] = useState({});
     const $balaoRef = useRef<HTMLParagraphElement>(null);
@@ -410,8 +349,7 @@ const CoachMark = React.memo(() => {
             const itemRef = document.getElementById(id);
             if (!itemRef || !$balaoRef.current) return;
             itemRef.scrollIntoView({ behavior: "instant", block: "center" });
-            const { height, left, top, width } =
-                itemRef.getBoundingClientRect();
+            const { height, left, top, width } = itemRef.getBoundingClientRect();
             setStyle({ height, width, left, top });
 
             const margem = 30;
@@ -457,11 +395,11 @@ const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
                     ref={videoRef}
                     src="/video.mp4"
                     onEnded={() => {
-                        if (videoRef.current?.currentTime)
-                            videoRef.current.currentTime = 0;
+                        if (videoRef.current?.currentTime) videoRef.current.currentTime = 0;
                         setPlay(false);
                         setShowCoach(true);
                     }}
+                    playsInline
                 />
             </div>
             <FloresBackground posicao="cima" />
@@ -500,46 +438,32 @@ const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
                         </motion.div>
 
                         <div className="informacoes">
-                            <motion.p
-                                className="informacoes__convite"
-                                variants={variantsItem}
-                            >
+                            <motion.p className="informacoes__convite" variants={variantsItem}>
                                 CONVIDAM PARA A CELEBRAÇÃO DE SEU CASAMENTO
                             </motion.p>
                             <div className="informacoes__dados">
-                                <data
-                                    value={DATA_CASAMENTO.toLocaleDateString(
-                                        "pt-BR",
-                                    )}
-                                >
+                                <data value={DATA_CASAMENTO.toLocaleDateString("pt-BR")}>
                                     {Array.from(
                                         `${DATA_CASAMENTO.toLocaleDateString("pt-BR").replace(/\//g, ".")} | ${DATA_CASAMENTO.toLocaleDateString("pt-BR", { weekday: "long" }).toUpperCase()}`,
                                     ).map((v, i) =>
                                         v === " " ? (
                                             <span key={i}>&nbsp;</span>
                                         ) : (
-                                            <motion.span
-                                                key={v + i}
-                                                variants={variantsItem}
-                                            >
+                                            <motion.span key={v + i} variants={variantsItem}>
                                                 {v}
                                             </motion.span>
                                         ),
                                     )}
                                 </data>
                                 <p>
-                                    {Array.from(`ÀS ${HORARIO}:00 HORAS`).map(
-                                        (v, i) =>
-                                            v === " " ? (
-                                                <span key={i}>&nbsp;</span>
-                                            ) : (
-                                                <motion.span
-                                                    key={v + i}
-                                                    variants={variantsItem}
-                                                >
-                                                    {v}
-                                                </motion.span>
-                                            ),
+                                    {Array.from(`ÀS ${HORARIO}:00 HORAS`).map((v, i) =>
+                                        v === " " ? (
+                                            <span key={i}>&nbsp;</span>
+                                        ) : (
+                                            <motion.span key={v + i} variants={variantsItem}>
+                                                {v}
+                                            </motion.span>
+                                        ),
                                     )}
                                 </p>
                             </div>
@@ -556,11 +480,7 @@ const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
                                     });
                                 }}
                             >
-                                {play ? (
-                                    <VideoOff size={20} />
-                                ) : (
-                                    <Video size={20} />
-                                )}
+                                {play ? <VideoOff size={20} /> : <Video size={20} />}
                             </button>
                         </div>
 
@@ -621,16 +541,12 @@ const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
                     }}
                 >
                     <blockquote>
-                        <span>“</span>Tudo começou no coração de Deus. Cremos
-                        que Ele escreveu nossa história com amor, cuidado e
-                        propósito. Hoje, com gratidão, escolhemos dizer sim
-                        diante do Senhor, certos de que é Ele quem firma nossos
-                        passos e sustenta nossa união. Queremos celebrar esse
-                        momento especial na presença de Deus e ao lado de
-                        pessoas que fazem parte da nossa caminhada. Será uma
-                        alegria compartilhar conosco esse dia tão importante,
-                        onde uniremos nossas vidas para honrar, amar e servir ao
-                        Senhor.
+                        <span>“</span>Tudo começou no coração de Deus. Cremos que Ele escreveu nossa história com amor,
+                        cuidado e propósito. Hoje, com gratidão, escolhemos dizer sim diante do Senhor, certos de que é
+                        Ele quem firma nossos passos e sustenta nossa união. Queremos celebrar esse momento especial na
+                        presença de Deus e ao lado de pessoas que fazem parte da nossa caminhada. Será uma alegria
+                        compartilhar conosco esse dia tão importante, onde uniremos nossas vidas para honrar, amar e
+                        servir ao Senhor.
                         <span>”</span>
                     </blockquote>
                 </motion.div>
@@ -647,10 +563,7 @@ function App() {
             <main>
                 <AnimatePresence mode="wait">
                     {abrir ? (
-                        <Conteudo
-                            key={"conteudo"}
-                            onShowPresentes={() => setShowPresentes(true)}
-                        />
+                        <Conteudo key={"conteudo"} onShowPresentes={() => setShowPresentes(true)} />
                     ) : (
                         <motion.div
                             key={"home"}
@@ -668,9 +581,7 @@ function App() {
                             </div>
 
                             <div className="home__conteudo">
-                                <motion.h1 variants={variantsItem}>
-                                    João & Mariana
-                                </motion.h1>
+                                <motion.h1 variants={variantsItem}>João & Mariana</motion.h1>
 
                                 <motion.div
                                     className="home__envelope"
@@ -680,18 +591,14 @@ function App() {
                                     onTap={() => setAbrir(true)}
                                 >
                                     <p className="home__envelope--title">
-                                        {Array.from("Nosso Casamento").map(
-                                            (v, i) =>
-                                                v === " " ? (
-                                                    <span key={i}>&nbsp;</span>
-                                                ) : (
-                                                    <motion.span
-                                                        variants={variantsItem}
-                                                        key={v + i}
-                                                    >
-                                                        {v}
-                                                    </motion.span>
-                                                ),
+                                        {Array.from("Nosso Casamento").map((v, i) =>
+                                            v === " " ? (
+                                                <span key={i}>&nbsp;</span>
+                                            ) : (
+                                                <motion.span variants={variantsItem} key={v + i}>
+                                                    {v}
+                                                </motion.span>
+                                            ),
                                         )}
                                     </p>
 
@@ -701,10 +608,7 @@ function App() {
                                             <span>&</span>
                                             <span>M</span>
                                         </div>
-                                        <img
-                                            src="/envelope.png"
-                                            alt="Envelope"
-                                        />
+                                        <img src="/envelope.png" alt="Envelope" />
 
                                         <motion.p
                                             className="home__img--clique"
@@ -737,43 +641,27 @@ function App() {
                                         <i />
                                         <p>
                                             {Array.from(
-                                                DATA_CASAMENTO.toLocaleDateString(
-                                                    "pt-BR",
-                                                    { weekday: "long" },
-                                                ),
+                                                DATA_CASAMENTO.toLocaleDateString("pt-BR", { weekday: "long" }),
                                             ).map((v, i) => (
-                                                <motion.span
-                                                    variants={variantsItem}
-                                                    key={v + i}
-                                                >
+                                                <motion.span variants={variantsItem} key={v + i}>
                                                     {v}
                                                 </motion.span>
                                             ))}
                                         </p>
                                         <i />
                                     </motion.div>
-                                    <data
-                                        value={DATA_CASAMENTO.toLocaleDateString(
-                                            "pt-BR",
-                                        )}
-                                    >
+                                    <data value={DATA_CASAMENTO.toLocaleDateString("pt-BR")}>
                                         {Array.from(
-                                            DATA_CASAMENTO.toLocaleDateString(
-                                                "pt-BR",
-                                                {
-                                                    day: "2-digit",
-                                                    month: "long",
-                                                    year: "numeric",
-                                                },
-                                            ),
+                                            DATA_CASAMENTO.toLocaleDateString("pt-BR", {
+                                                day: "2-digit",
+                                                month: "long",
+                                                year: "numeric",
+                                            }),
                                         ).map((v, i) =>
                                             v === " " ? (
                                                 <span key={i}>&nbsp;</span>
                                             ) : (
-                                                <motion.span
-                                                    variants={variantsItem}
-                                                    key={v + i}
-                                                >
+                                                <motion.span variants={variantsItem} key={v + i}>
                                                     {v}
                                                 </motion.span>
                                             ),
@@ -788,9 +676,7 @@ function App() {
             </main>
 
             <AnimatePresence>
-                {showPresentes && (
-                    <ListaPresentes back={() => setShowPresentes(false)} />
-                )}
+                {showPresentes && <ListaPresentes back={() => setShowPresentes(false)} />}
             </AnimatePresence>
         </>
     );
