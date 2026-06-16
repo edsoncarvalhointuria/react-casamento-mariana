@@ -16,7 +16,7 @@ import { AnimatePresence, motion, stagger, type Variants } from "framer-motion";
 import Cozinha from "./assets/Cozinha";
 
 const DATA_CASAMENTO = new Date("2026-10-24T12:00:00");
-const HORARIO = 16;
+const HORARIO = 18;
 
 const variantsContainer: Variants = {
     initial: {},
