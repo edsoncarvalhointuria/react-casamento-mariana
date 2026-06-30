@@ -126,8 +126,8 @@ const itensSala = [
     { img: "/itens/item56.png", link: "https://a.co/d/20hlUVz" },
     { img: "/itens/item57.png", link: "https://a.co/d/1apkNfM" },
     {
-        img: "/itens/9aad17b3c508eab4173a80ea0dd5be4a-removebg-preview.png",
-        link: "https://www.magazineluiza.com.br/sofa-retratil-e-reclinavel-3-lugares-com-molas-200m-vegas-suede-preto-adonai-estofados/p/hj7de43bef/mo/esto/?partner_id=64853&utm_source=pdp_desk&utm_medium=share&seller_id=adonaiestofados",
+        img: "/itens/37d25c8090717d1391ef53189d403782-removebg-preview.png",
+        link: "https://www.magazineluiza.com.br/sofa-retratil-e-reclinavel-3-lugares-com-molas-180m-livia-suede-cinza-adonai-estofados/p/ded6b5g0ha/mo/esto/?partner_id=64853&utm_source=pdp_desk&utm_medium=share&seller_id=adonaiestofados",
     },
 ];
 const itensBanheiro = [
