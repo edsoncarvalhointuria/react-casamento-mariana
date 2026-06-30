@@ -30,6 +30,10 @@ interface SecaoInterface {
 const itensCozinha = [
     // { img: "/itens/item1.png", link: "https://a.co/d/0GJhQWr" },
     { img: "/itens/item2.png", link: "https://a.co/d/8aVnetd" },
+    {
+        img: "/itens/4271d4f6ec4e8286848743bf035e41a6-removebg-preview.png",
+        link: "https://www.magazineluiza.com.br/geladeira-refrigerador-consul-smart-frost-free-duplex-branca-377l-crm44mbbna/p/240425000/ed/refr/?partner_id=64853&utm_source=pdp_desk&utm_medium=share&seller_id=magazineluiza",
+    },
     // {
     //     img: "/itens/microondas-removebg-preview.png",
     //     link: "https://a.co/d/0crvrO70",
@@ -90,7 +94,7 @@ const itensCozinha = [
     { img: "/itens/item28.png", link: "https://a.co/d/dqFIowv" },
     { img: "/itens/item29.png", link: "https://a.co/d/2homcG5" },
     { img: "/itens/item30.png", link: "https://a.co/d/eclKQnA" },
-    { img: "/itens/item31.png", link: "https://a.co/d/2CuZb4k" },
+    // { img: "/itens/item31.png", link: "https://a.co/d/2CuZb4k" },
     { img: "/itens/item32.png", link: "https://a.co/d/fnFTYiy" },
     { img: "/itens/item33.png", link: "https://a.co/d/gdV391h" },
     { img: "/itens/item34.png", link: "https://a.co/d/730xFk7" },
@@ -121,6 +125,10 @@ const itensSala = [
     { img: "/itens/item55.png", link: "https://a.co/d/aJFrnON" },
     { img: "/itens/item56.png", link: "https://a.co/d/20hlUVz" },
     { img: "/itens/item57.png", link: "https://a.co/d/1apkNfM" },
+    {
+        img: "/itens/9aad17b3c508eab4173a80ea0dd5be4a-removebg-preview.png",
+        link: "https://www.magazineluiza.com.br/sofa-retratil-e-reclinavel-3-lugares-com-molas-200m-vegas-suede-preto-adonai-estofados/p/hj7de43bef/mo/esto/?partner_id=64853&utm_source=pdp_desk&utm_medium=share&seller_id=adonaiestofados",
+    },
 ];
 const itensBanheiro = [
     { img: "/itens/item58.png", link: "https://a.co/d/5nUpnkh" },
@@ -146,12 +154,18 @@ const itensQuarto = [
     { img: "/itens/item68.png", link: "https://a.co/d/1fwyaOy" },
     { img: "/itens/item69.png", link: "https://a.co/d/emu56VP" },
     { img: "/itens/item70.png", link: "https://a.co/d/0ZpcgY6" },
+    { img: "/itens/61ANMwIxzxL._AC_SX679_-removebg-preview.png", link: "https://a.co/d/0a7oDK7S" },
     { img: "/itens/item71.png", link: "https://a.co/d/7VASify" },
     { img: "/itens/item72.png", link: "https://a.co/d/hOj3QOw" },
     { img: "/itens/item73.png", link: "https://a.co/d/1PcxHEZ" },
+    {
+        img: "/itens/39ecab64a83c58e07683fe23d0207f6d-removebg-preview.png",
+        link: "https://www.magazineluiza.com.br/almofada-futon-turco-quadrada-alta-cheia-sala-sofa-poltrona-cadeira-banco-cor-lisa-40x40x10cm-casas-valencia/p/eebdhh2ka6/cm/alcm/?partner_id=64853&utm_source=pdp_desk&utm_medium=share&seller_id=casasvalencia1",
+    },
 ];
 const itensServico = [
     { img: "/itens/item74.png", link: "https://a.co/d/3ymBguN" },
+    { img: "/itens/41pS08Q7EoL._AC_SX679_-removebg-preview.png", link: "https://a.co/d/031xtJu1" },
     // { img: "/itens/item75.png", link: "https://a.co/d/4sWJeyW" },
     // { img: "/itens/item76.png", link: "https://a.co/d/cR3xmYB" },
     // {
