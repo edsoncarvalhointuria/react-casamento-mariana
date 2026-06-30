@@ -30,14 +30,14 @@ interface SecaoInterface {
 const itensCozinha = [
     // { img: "/itens/item1.png", link: "https://a.co/d/0GJhQWr" },
     { img: "/itens/item2.png", link: "https://a.co/d/8aVnetd" },
-    {
-        img: "/itens/microondas-removebg-preview.png",
-        link: "https://a.co/d/0crvrO70",
-    },
-    {
-        img: "/itens/Airfryer-removebg-preview.png",
-        link: "https://a.co/d/07H8FY5r",
-    },
+    // {
+    //     img: "/itens/microondas-removebg-preview.png",
+    //     link: "https://a.co/d/0crvrO70",
+    // },
+    // {
+    //     img: "/itens/Airfryer-removebg-preview.png",
+    //     link: "https://a.co/d/07H8FY5r",
+    // },
     {
         img: "/itens/Batedeira-removebg-preview.png",
         link: "https://a.co/d/00rwaLzK",
