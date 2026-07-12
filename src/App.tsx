@@ -116,7 +116,6 @@ const itensQuarto = [
 ];
 const itensServico = [
     { img: "/itens/item74.png", link: "https://a.co/d/3ymBguN" },
-    { img: "/itens/41pS08Q7EoL._AC_SX679_-removebg-preview.png", link: "https://a.co/d/031xtJu1" },
     { img: "/itens/item77.png", link: "https://a.co/d/2mGa0lh" },
     { img: "/itens/item78.png", link: "https://a.co/d/3YXYRLx" },
     { img: "/itens/item79.png", link: "https://a.co/d/cpi4Ium" },
