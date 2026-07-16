@@ -446,7 +446,7 @@ const Conteudo = ({ onShowPresentes }: { onShowPresentes: () => void }) => {
                                 rel="noopener noreferrer"
                                 id={id}
                                 className="link"
-                                href="https://wa.me/5511912748943?text=Confirmo%20a%20minha%20presen%C3%A7a%20no%20casamento%20de%20Mariana%20e%20Jo%C3%A3o%20!%20"
+                                href="https://wa.me/5519971004793?text=Confirmo%20a%20minha%20presen%C3%A7a%20no%20casamento%20de%20Mariana%20e%20Jo%C3%A3o%20!%20"
                             >
                                 <i>
                                     <Check size={30} />
