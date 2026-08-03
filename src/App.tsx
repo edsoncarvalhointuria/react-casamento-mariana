@@ -29,10 +29,6 @@ interface SecaoInterface {
 
 const itensCozinha = [
     {
-        img: "/itens/4271d4f6ec4e8286848743bf035e41a6-removebg-preview.png",
-        link: "https://www.magazineluiza.com.br/geladeira-refrigerador-consul-smart-frost-free-duplex-branca-377l-crm44mbbna/p/240425000/ed/refr/?partner_id=64853&utm_source=pdp_desk&utm_medium=share&seller_id=magazineluiza",
-    },
-    {
         img: "/itens/Batedeira-removebg-preview.png",
         link: "https://a.co/d/00rwaLzK",
     },
